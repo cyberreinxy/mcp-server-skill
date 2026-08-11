@@ -1,0 +1,19 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run bash validation
+        run: bash skill/validate.sh
+
+      - name: Run PowerShell validation
+        run: pwsh -NoProfile -File skill/validate.ps1
